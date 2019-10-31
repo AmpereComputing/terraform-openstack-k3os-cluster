@@ -8,7 +8,16 @@
 
 ## Description
 
-This Terraform will build a multinode k3OS cluster with a single master and N+1 minions. Minions join the Master node upon boot. The IP address of the master node is rendered dynamically in the cloud-config template used to launch the Minons. Minion count is configurable via the `minion_count` variable located in variables.tf
+This Terraform will build a multinode (ARM64/AMD64) k3OS cluster with a single master and N+1 minions. Minions join the Master node upon boot. The IP address of the master node is rendered dynamically in the cloud-config template used to launch the Minons. Minion count is configurable via the `minion_count` variable located in variables.tf
+
+## Quickstart
+
+```
+
+git clone https://github.com/amperecomputing/terraform-openstack-k3os-cluster
+cd terraform-openstack-k3os-cluster
+terraform init && terraform plan && terraform apply -auto-approve
+```
 
 ## k3OS Packer Image Template
 
@@ -16,7 +25,18 @@ This Terraform will build a multinode k3OS cluster with a single master and N+1 
 * The packer image template is located in the k3OS source here: [https://github.com/rancher/k3os](https://github.com/rancher/k3os)
 * The base image is created using using an Ubuntu 18.04 (ARM64/AMD64) image.
 * An Ubuntu 18.04 image must be present in Glance prior to building the image.
+* Assuming kolla-ansible was used to deploy openstack and packer is run from the kolla-ansible control node the following should build the packer image:
 
+```
+git clone https://github.com/rancher/k3os
+cd k3os/package/packer/openstack
+source /etc/kolla/admin-openrc.sh
+export OS_SOURCE_IMAGE=`openstack image list | grep 'ubuntu-18.04'| awk '{print $2}'`
+export OS_NETWORKS_ID=`openstack network list | grep 'demo-net'| awk '{print $2}'`
+export OS_FLOATING_IP_POOL='public1'
+packer validate template-arm64.json
+packer build template-arm64.json
+```
 ## Notes
 
 * Currently there is a bug in the overlay installation of k3OS which causes the VM using the image to shutdown after first boot.  
