@@ -28,12 +28,5 @@ output "k3os_ssh_private_key" {
 }
 
 
-resource "random_id" "cluster" {
-  keepers = {
-    # Generate a new string to be used for the cluster authentication
-    master_id = "${var.master_id}"
-  }
-
-  byte_length = 8
-}
+resource "random_uuid" "cluster" { }
 

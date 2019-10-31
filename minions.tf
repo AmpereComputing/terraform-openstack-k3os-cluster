@@ -1,16 +1,12 @@
 # k3OS minion
 
-variable "master_address" {
-  default = ""
-}
-
 # Cloud-Config
 data "template_file" "minion_cloud_config" {
   template = "${file("${path.module}/templates/minion-cfg.yaml.tpl")}"
   vars = {
     tf_ssh_pubkey = "${tls_private_key.k3os.public_key_openssh}"
     master_address = "${openstack_compute_instance_v2.vm.access_ip_v4}"
-    master_id = "${var.master_id}"
+    master_id = "${random_uuid.cluster.result}"
   }
 }
 

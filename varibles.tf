@@ -22,20 +22,29 @@ variable "ssh_user_name" {
 }
 
 variable "pool" {
+  description = "OpenStack floating ip pool name"
   default = "public1"
 }
 
 variable "network_name" {
+  description = "OpenStack network name"
   default = "demo-net"
 }
 
 variable "instance_prefix" {
+  description = "Name prefix for vm instances"
   default = "k3os-minon"
 }
 
 variable "master_count" {
+  # Currently on one master
   default = 1
 }
 variable "minion_count" {
+  # How many minions do you want?
   default = 3
 }
+variable "master_address" {
+  default = ""
+}
+

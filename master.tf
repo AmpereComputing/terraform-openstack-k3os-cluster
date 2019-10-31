@@ -8,7 +8,7 @@ data "template_file" "master_cloud_config" {
   vars = {
     tf_ssh_privkey = "${tls_private_key.k3os.private_key_pem}"
     tf_ssh_pubkey = "${tls_private_key.k3os.public_key_openssh}"
-    master_id = "${var.master_id}"
+    master_id = "${random_uuid.cluster.result}"
   }
 }
 
