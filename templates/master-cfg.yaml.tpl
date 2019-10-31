@@ -6,10 +6,10 @@ write_files:
     #!/bin/bash
     echo "Downloading and Installing RIO"
     curl -sfL https://get.rio.io | sh -
-    while ! kubectl cluster-info >/dev/null 2>&1; do
-      sleep 1
-    done
-    rio install
+    #while ! kubectl cluster-info >/dev/null 2>&1; do
+    #  sleep 1
+    #done
+    #rio install
   owner: root
   path: /etc/local.d/01_install_rio.sh
   permissions: '0755'
@@ -19,7 +19,7 @@ write_files:
     echo "Installing OpenFAAS Client"
     curl -sL https://cli.openfaas.com | sh
   owner: root
-  path: /etc/local.d/02_install_faas.sh
+  path: /etc/local.d/02_install_faascli.sh
   permissions: '0755'
 - encoding: ""
   content: |-
@@ -30,10 +30,12 @@ write_files:
     done
     kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
   owner: root
-  path: /etc/local.d/02_install_faas.sh
+  path: /etc/local.d/03_install_faas.sh
   permissions: '0755'
 run_cmd:
-- 'touch ~/cloud-init-test'
+- 'sh /etc/local.d/01_install_rio.sh'
+- 'sh /etc/local.d/02_install_faascli.sh'
+#- 'sh /etc/local.d/03_install_faas.sh'
 k3os:
   data_sources:
   - openstack

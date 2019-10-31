@@ -10,7 +10,7 @@ variable "image" {
 
 variable "flavor" {
   description = "The the OpenStack VM flavor to default to when starting multiple virtual machines with terraform"
-  default     = "m1.small"
+  default     = "m1.medium"
 }
 
 variable "ssh_key_file" {
