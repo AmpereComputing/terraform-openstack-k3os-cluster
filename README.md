@@ -10,6 +10,8 @@
 
 This Terraform will build a multinode (ARM64/AMD64) k3OS cluster with a single master and N+1 minions. Minions join the Master node upon boot. The IP address of the master node is rendered dynamically in the cloud-config template used to launch the Minons. Minion count is configurable via the `minion_count` variable located in variables.tf
 
+<script id="asciicast-278218" src="https://asciinema.org/a/278218.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
+
 ## Quickstart
 
 ```
