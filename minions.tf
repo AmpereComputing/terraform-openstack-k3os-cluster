@@ -1,4 +1,8 @@
-# k3OS master
+# k3OS minion
+
+variable "master_address" {
+  default = ""
+}
 
 # Cloud-Config
 data "template_file" "minion_cloud_config" {
@@ -7,6 +11,11 @@ data "template_file" "minion_cloud_config" {
     master_address = "${openstack_compute_instance_v2.vm.access_ip_v4}"
   }
 }
+
+output "minion_cloud_init" {
+  value = "${data.template_file.minion_cloud_config.rendered}"
+}
+
 
 
 resource "openstack_compute_instance_v2" "minion" {
@@ -28,19 +37,19 @@ output "minion_ip_internal" {
 }
 
 # Create Floating IPs
-resource "openstack_networking_floatingip_v2" "floating_ip_minion" {
-  count = var.master_count
-  pool = var.pool
-}
+#resource "openstack_networking_floatingip_v2" "floating_ip_minion" {
+#  count = var.master_count
+#  pool = var.pool
+#}
 
 # Associate Floating IPs to VM Instances
-resource "openstack_compute_floatingip_associate_v2" "floating_ip_minion" {
-  count       = var.master_count
-  instance_id = "${openstack_compute_instance_v2.minion.*.id[count.index]}"
-  floating_ip = "${openstack_networking_floatingip_v2.floating_ip_minion.*.address[count.index]}"
-}
+#resource "openstack_compute_floatingip_associate_v2" "floating_ip_minion" {
+#  count       = var.master_count
+#  instance_id = "${openstack_compute_instance_v2.minion.*.id[count.index]}"
+#  floating_ip = "${openstack_networking_floatingip_v2.floating_ip_minion.*.address[count.index]}"
+#}
 
 # Show floating IP
-output "minion_ip_external" {
-  value = "${openstack_networking_floatingip_v2.floating_ip_minion.*.address}"
-}
+#output "minion_ip_external" {
+#  value = "${openstack_networking_floatingip_v2.floating_ip_minion.*.address}"
+#}

@@ -7,6 +7,11 @@ data "template_file" "master_cloud_config" {
   template = "${file("${path.module}/templates/master-cfg.yaml.tpl")}"
 }
 
+output "master_cloud_init" {
+  value = "${data.template_file.master_cloud_config.rendered}"
+}
+
+
 
 
 resource "openstack_compute_instance_v2" "vm" {
@@ -19,7 +24,7 @@ resource "openstack_compute_instance_v2" "vm" {
   network {
     name = var.network_name
   }
-# user_data = "${file("master-cfg.yaml")}"
+  # user_data = "${file("${path.module}/templates/master-cfg.yaml")}"
   user_data    = "${data.template_file.master_cloud_config.rendered}"
 }
 

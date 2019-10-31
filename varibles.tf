@@ -30,12 +30,12 @@ variable "network_name" {
 }
 
 variable "instance_prefix" {
-  default = "k3OS-"
+  default = "k3os-minon"
 }
 
 variable "master_count" {
   default = 1
 }
 variable "minion_count" {
-  default = 1
+  default = 3
 }
