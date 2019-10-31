@@ -8,6 +8,7 @@ variable "master_address" {
 data "template_file" "minion_cloud_config" {
   template = "${file("${path.module}/templates/minion-cfg.yaml.tpl")}"
   vars = {
+    tf_ssh_pubkey  = "${tls_private_key.k3os.private_key_pem}"
     master_address = "${openstack_compute_instance_v2.vm.access_ip_v4}"
   }
 }

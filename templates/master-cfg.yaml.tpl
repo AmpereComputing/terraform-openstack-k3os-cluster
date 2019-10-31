@@ -1,4 +1,5 @@
 ssh_authorized_keys:
+- "${tf_ssh_pubkey}"
 - github:ppouliot
 write_files:
 - encoding: ""

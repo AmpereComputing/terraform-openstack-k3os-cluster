@@ -5,6 +5,9 @@
 
 data "template_file" "master_cloud_config" {
   template = "${file("${path.module}/templates/master-cfg.yaml.tpl")}"
+  vars = {
+    tf_ssh_pubkey = "${tls_private_key.k3os.private_key_pem}"
+  }
 }
 
 output "master_cloud_init" {
