@@ -1,5 +1,6 @@
+#cloud-config
 ssh_authorized_keys:
-- "${tf_ssh_pubkey}"
+- ${tf_ssh_pubkey}
 - github:ppouliot
 write_files:
 - encoding: ""
@@ -42,7 +43,6 @@ write_files:
 run_cmd:
 - 'sh /etc/local.d/01_install_rio.sh'
 - 'sh /etc/local.d/02_install_faascli.sh'
-#- 'sh /etc/local.d/03_install_faas.sh'
 k3os:
   data_sources:
   - openstack

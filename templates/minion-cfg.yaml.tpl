@@ -1,5 +1,6 @@
+#cloud-config
 ssh_authorized_keys:
-- "${tf_ssh_pubkey}"
+- ${tf_ssh_pubkey}
 - github:ppouliot
 k3os:
   data_sources:
