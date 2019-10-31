@@ -42,6 +42,7 @@ export OS_FLOATING_IP_POOL='public1'
 packer validate template-arm64.json
 packer build template-arm64.json
 ```
+
 ## Notes
 
 * Currently there is a bug in the overlay installation of k3OS which causes the VM using the image to shutdown after first boot.  
