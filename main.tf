@@ -26,3 +26,14 @@ output "k3os_ssh_pubic_key" {
 output "k3os_ssh_private_key" {
   value = "${tls_private_key.k3os.private_key_pem}"
 }
+
+
+resource "random_id" "cluster" {
+  keepers = {
+    # Generate a new string to be used for the cluster authentication
+    master_id = "${var.master_id}"
+  }
+
+  byte_length = 8
+}
+

@@ -1,14 +1,8 @@
 #cloud-config
 ssh_authorized_keys:
-- ${tf_ssh_pubkey}
+- "${tf_ssh_pubkey}"
 - github:ppouliot
 write_files:
-- encoding: ""
-  content: |-
-    ${tf_ssh_privkey}
-  owner: rancher
-  path: /rancher/.ssh/id_rsa
-  permissions: '0600'
 - encoding: ""
   content: |-
     #!/bin/bash
@@ -51,4 +45,4 @@ k3os:
   ntp_servers:
   - 0.us.pool.ntp.org
   - 1.us.pool.ntp.org
-  token: "Amp3r3C0mput1ngk30SClust2r"
+  token: "${master_id}"

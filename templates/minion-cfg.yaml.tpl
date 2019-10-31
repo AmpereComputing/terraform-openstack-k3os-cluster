@@ -10,5 +10,5 @@ k3os:
   ntp_servers:
   - 0.us.pool.ntp.org
   - 1.us.pool.ntp.org
-  token: "Amp3r3C0mput1ngk30SClust2r"
+  token: "${var.master_id}"
   server_url: https://${master_address}:6443
