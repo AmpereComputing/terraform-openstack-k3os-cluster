@@ -1,14 +1,11 @@
 # k3OS master
 
-# user_data    = "${base64encode(data.template_file.cloud_config.rendered)}"
-# Cloud-Config
-
 data "template_file" "master_cloud_config" {
   template = "${file("${path.module}/templates/master-cfg.yaml.tpl")}"
   vars = {
     tf_ssh_privkey = "${tls_private_key.k3os.private_key_pem}"
     tf_ssh_pubkey = "${tls_private_key.k3os.public_key_openssh}"
-    master_id = "${random_uuid.cluster.result}"
+    tf_master_id = "${random_uuid.cluster.result}"
   }
 }
 

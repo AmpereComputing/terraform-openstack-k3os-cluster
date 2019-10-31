@@ -29,4 +29,3 @@ output "k3os_ssh_private_key" {
 
 
 resource "random_uuid" "cluster" { }
-

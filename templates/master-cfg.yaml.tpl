@@ -45,4 +45,4 @@ k3os:
   ntp_servers:
   - 0.us.pool.ntp.org
   - 1.us.pool.ntp.org
-  token: "${master_id}"
+  token: "${tf_master_id}"
