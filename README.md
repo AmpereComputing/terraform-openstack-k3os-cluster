@@ -25,6 +25,7 @@ terraform init && terraform plan && terraform apply -auto-approve
 * The packer image template is located in the k3OS source here: [https://github.com/rancher/k3os](https://github.com/rancher/k3os)
 * The base image is created using using an Ubuntu 18.04 (ARM64/AMD64) image.
 * An Ubuntu 18.04 image must be present in Glance prior to building the image.
+* Terraform was used to deploy the Ubuntu 18.04 image to OpenStack. The Terraform code for loading images can be found [here](https://github.com/amperecomputing/terraform-openstack-images).
 * Assuming kolla-ansible was used to deploy openstack and packer is run from the kolla-ansible control node the following should build the packer image:
 
 ```
