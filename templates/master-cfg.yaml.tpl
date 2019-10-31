@@ -4,6 +4,12 @@ ssh_authorized_keys:
 write_files:
 - encoding: ""
   content: |-
+    ${tf_ssh_privkey}
+  owner: rancher
+  path: /rancher/.ssh/id_rsa
+  permissions: '0600'
+- encoding: ""
+  content: |-
     #!/bin/bash
     echo "Downloading and Installing RIO"
     curl -sfL https://get.rio.io | sh -
