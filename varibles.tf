@@ -42,7 +42,7 @@ variable "master_count" {
 }
 variable "minion_count" {
   # How many minions do you want?
-  default = 2
+  default = 7
 }
 
 variable "master_address" {
