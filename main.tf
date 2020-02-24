@@ -10,12 +10,12 @@ resource "tls_private_key" "k3os" {
 }
 
 resource "local_file" "k3os-ssh-privkey" {
-    content = "${tls_private_key.k3os.private_key_pem}"
+    content = tls_private_key.k3os.private_key_pem
     filename = "${path.module}/k3os-id_rsa"
 }
 
 resource "local_file" "k3os-ssh-pubkey" {
-    content  = "${tls_private_key.k3os.public_key_openssh}"
+    content  = tls_private_key.k3os.public_key_openssh
     filename = "${path.module}/k3os-id_rsa.pub"
 }
 

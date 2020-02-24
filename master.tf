@@ -27,7 +27,7 @@ resource "openstack_compute_instance_v2" "vm" {
     name = var.network_name
   }
   # user_data = "${file("${path.module}/templates/master-cfg.yaml")}"
-  user_data    = "${data.template_file.master_cloud_config.rendered}"
+  user_data    = data.template_file.master_cloud_config.rendered
 }
 
 # Show Instanace IP Address
@@ -45,9 +45,9 @@ resource "openstack_networking_floatingip_v2" "fip" {
 resource "openstack_compute_floatingip_associate_v2" "fip" {
 #  count       = var.master_count
 #  instance_id = "${openstack_compute_instance_v2.vm.*.id[count.index]}"
-  instance_id = "${openstack_compute_instance_v2.vm.id}"
+  instance_id = openstack_compute_instance_v2.vm.id
 #  floating_ip = "${openstack_networking_floatingip_v2.fip.*.address[count.index]}"
-  floating_ip = "${openstack_networking_floatingip_v2.fip.address}"
+  floating_ip = openstack_networking_floatingip_v2.fip.address
 }
 
 # Show floating IP

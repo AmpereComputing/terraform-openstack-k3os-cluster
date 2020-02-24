@@ -18,7 +18,7 @@ output "minion_cloud_init" {
 
 resource "openstack_compute_instance_v2" "minion" {
   count           = var.minion_count
-  name            = "${format("${var.instance_prefix}-%02d", count.index+1)}"
+  name            = format("${var.instance_prefix}-%02d", count.index+1)
   image_name      = var.image
   flavor_name     = var.flavor
   key_pair        = openstack_compute_keypair_v2.terraform.name
@@ -26,7 +26,7 @@ resource "openstack_compute_instance_v2" "minion" {
   network {
     name = var.network_name
   }
-  user_data    = "${data.template_file.minion_cloud_config.rendered}"
+  user_data    = data.template_file.minion_cloud_config.rendered
 }
 
 # Show Instanace IP Address
