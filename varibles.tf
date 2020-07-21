@@ -5,7 +5,7 @@ variable "region" {
 
 variable "image" {
   description = "The the OpenStack VM Image to default to when starting multiple virtual machines with terraform"
-  default     = "k3OS-v0.9.0-arm64"
+  default     = "k3OS-v0.10.2-arm64"
 }
 
 variable "flavor" {
