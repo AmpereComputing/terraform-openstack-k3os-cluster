@@ -1,4 +1,4 @@
-# k3OS controllers
+# k3OS HA controllers
 
 # Cloud-Config
 data "template_file" "controllers_cloud_config" {
@@ -13,8 +13,6 @@ data "template_file" "controllers_cloud_config" {
 output "controllers_cloud_init" {
   value = data.template_file.controllers_cloud_config.rendered
 }
-
-
 
 resource "openstack_compute_instance_v2" "controllers" {
   count           = 2

@@ -14,8 +14,6 @@ output "minion_cloud_init" {
   value = data.template_file.minion_cloud_config.rendered
 }
 
-
-
 resource "openstack_compute_instance_v2" "minion" {
   count           = var.minion_count
   name            = format("${var.instance_prefix}-%02d", count.index+1)

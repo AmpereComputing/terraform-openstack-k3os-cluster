@@ -5,7 +5,7 @@ variable "region" {
 
 variable "image" {
   description = "The the OpenStack VM Image to default to when starting multiple virtual machines with terraform"
-  default     = "k3OS-v0.10.2-arm64"
+  default     = "k3OS-v0.11.1-arm64"
 }
 
 variable "flavor" {
@@ -42,7 +42,7 @@ variable "master_count" {
 }
 variable "minion_count" {
   # How many minions do you want?
-  default = 7
+  default = 2
 }
 
 variable "master_address" {
