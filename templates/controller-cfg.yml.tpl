@@ -2,6 +2,8 @@
 ssh_authorized_keys:
 - "${tf_ssh_pubkey}"
 - github:ppouliot
+write_files:
+run_cmd:
 k3os:
   data_sources:
   - openstack
@@ -11,4 +13,6 @@ k3os:
   - 0.us.pool.ntp.org
   - 1.us.pool.ntp.org
   token: "${tf_controller_id}"
-  server_url: https://${controller_address}:6443
+  k3s_args:
+  - server
+  - cluster-init

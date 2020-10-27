@@ -31,10 +31,3 @@ output "k3os_ssh_private_key" {
 
 
 resource "random_uuid" "cluster" { }
-
-# Removing due to adding permissions to the local_file
-#resource "null_resource" "key_permissions" {
-#  provisioner "local-exec" {
-#    command = "chmod 0600 ${path.module}/k3os-id_rsa"
-#  }
-#}
