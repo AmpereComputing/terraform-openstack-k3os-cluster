@@ -5,7 +5,7 @@ data "template_file" "controllers_cloud_config" {
   template = file("${path.module}/templates/controllers-cfg.yaml.tpl")
   vars = {
     tf_ssh_pubkey = tls_private_key.k3os.public_key_openssh
-    master_address = openstack_compute_instance_v2.vm.access_ip_v4
+    controller_address = openstack_compute_instance_v2.vm.access_ip_v4
     tf_controller_id = random_uuid.cluster.result
   }
 }
