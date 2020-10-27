@@ -6,7 +6,7 @@ data "template_file" "minion_cloud_config" {
   vars = {
     tf_ssh_pubkey = tls_private_key.k3os.public_key_openssh
     master_address = openstack_compute_instance_v2.vm.access_ip_v4
-    tf_master_id = random_uuid.cluster.result
+    tf_controller_id = random_uuid.cluster.result
   }
 }
 
